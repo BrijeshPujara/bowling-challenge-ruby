@@ -14,8 +14,8 @@ class BowlingGame
 
     # 10 x 2 rolls and increment the rollcount
     10.times do
-      if @rolls[rollCount] == 10
-        res += @rolls[rollCount] + @rolls[rollCount + 1] + @rolls[rollCount + 2]
+      if strike?(rollCount)
+        res += strikeScore(rollCount)
         rollCount += 1
       elsif spare?(rollCount)
         res += spareScore(rollCount)
