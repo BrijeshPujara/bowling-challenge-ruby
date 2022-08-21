@@ -10,21 +10,26 @@ class BowlingGame
 
   def score
     res = 0
-    rollCount = 0 
+    rollCount = 0
 
-# 10 x 2 rolls and increment the rollcount
+    # 10 x 2 rolls and increment the rollcount
     10.times do
-      if @rolls[rollCount] + @rolls[rollCount + 1] == 10
+      if @rolls[rollCount] == 10
         res += @rolls[rollCount] + @rolls[rollCount + 1] + @rolls[rollCount + 2]
-      else
-        res +=  @rolls[rollCount] + @rolls[rollCount + 1]
-      end
+        rollCount += 1
+      elsif spare?(rollCount)
+        res += spareScore(rollCount)
         rollCount += 2
+      else
+        res +=  frameTotal(rollCount)
+        rollCount += 2
+      end
+      
     end
-    res
+      res
   end
 
-  private 
+private 
 
   def strike?(rollCount)
     @rolls[rollCount] == 10
@@ -48,8 +53,3 @@ class BowlingGame
 
 end
 
-game = BowlingGame.new
-game.roll(10)
-game.roll(4)
-game.roll(3)
-p game.score
