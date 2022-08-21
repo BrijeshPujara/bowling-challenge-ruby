@@ -15,10 +15,10 @@ class BowlingGame
     # 10 x 2 rolls and increment the rollcount
     10.times do
       if strike?(rollCount)
-        res += strikeScore(rollCount)
+        res += bonusScore(rollCount)
         rollCount += 1
       elsif spare?(rollCount)
-        res += spareScore(rollCount)
+        res += bonusScore(rollCount)
         rollCount += 2
       else
         res +=  frameTotal(rollCount)
@@ -35,7 +35,7 @@ private
     @rolls[rollCount] == 10
   end
 
-  def strikeScore(rollCount)
+  def bonusScore(rollCount)
     @rolls[rollCount] + @rolls[rollCount + 1] + @rolls[rollCount + 2]
   end
 
@@ -43,9 +43,6 @@ private
     @rolls[rollCount] + @rolls[rollCount + 1] == 10
   end
 
-  def spareScore(rollCount)
-    @rolls[rollCount] + @rolls[rollCount + 1] + @rolls[rollCount + 2]
-  end
 
   def frameTotal(rollCount)
     @rolls[rollCount] + @rolls[rollCount + 1]
