@@ -19,7 +19,7 @@ RSpec.describe BowlingGame do
       expect(@game.score).to eq(20) 
     end
 
-# Spare Test
+# Spare Test - 3 bonus points
     it "checks to see if a spare is rolled" do
       @game.roll(6)
       @game.roll(4)
@@ -28,7 +28,7 @@ RSpec.describe BowlingGame do
       expect(@game.score).to eq(16)
     end
 
-# Strike Test
+# Strike Test - 7 bonus points
     it "checks to see if a strike is rolled" do
       @game.roll(10)
       @game.roll(3)
